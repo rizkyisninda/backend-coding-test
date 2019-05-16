@@ -136,7 +136,10 @@ module.exports.setup = function (app, jsonParser ,db) {
     *         description: rides
     */
     app.get('/rides', (req, res) => {
-        db.all('SELECT * FROM Rides', function (err, rows) {
+        const page = (req.query && req.query.page) ? req.query.page : 1
+        const limit = (req.query && req.query.limit) ? req.query.limit : 5
+        const offset = (page - 1) * limit;
+        db.all('SELECT * FROM Rides LIMIT ?, ?', [offset, limit], function (err, rows) {
             if (err) {
                 return res.send({
                     error_code: 'SERVER_ERROR',
