@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const Log = require('./utils/log')
 
-const routes = require('./routes')
+const routes = require('./rides/routes')
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./utils/swaggerSpec')
