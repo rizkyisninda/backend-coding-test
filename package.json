@@ -9,7 +9,8 @@
   "scripts": {
     "test": "mocha tests",
     "start": "node index.js",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "test:load": "forever start index.js && sleep 1 && artillery run test-load.yml && forever stop index.js"
   },
   "pre-push": [
     "test"
@@ -21,15 +22,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "express": "^4.16.4",
+    "forever": "^1.0.0",
     "morgan": "^1.9.1",
     "sqlite3": "^4.0.6",
     "swagger-jsdoc": "^1.10.3",
     "swagger-ui": "^3.22.1",
     "swagger-ui-express": "^4.0.3",
-    "winston": "^3.2.1",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -41,7 +43,8 @@
     "nyc": "^14.1.1",
     "pre-push": "^0.1.1",
     "mocha": "^6.1.4",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "artillery": "^1.6.0-28"
   },
   "nyc": {
     "exclude": [
