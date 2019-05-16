@@ -5,6 +5,7 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+const Log = require('./utils/log')
 
 const routes = require('./routes')
 
@@ -15,6 +16,7 @@ module.exports = (db) => {
    
     routes.setup(app, jsonParser ,db)
 
+    app.use(require('morgan')('combined', { 'stream': Log.stream }))
     app.get('/api-docs.json', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(swaggerSpec);
