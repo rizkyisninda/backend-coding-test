@@ -2,6 +2,7 @@
 
 const Response = require('../utils/response')
 const Repository = require('../rides/repository')
+const Log = require('../utils/response')
 
 class RidesUseCase {
     constructor(req) {
@@ -78,6 +79,7 @@ class RidesUseCase {
             const getData = await ridesRepository.getDataById(db, insertData.lastID)
             return new Response(true, 'success', getData[0], null)
         } catch (error) {
+            Log.error(error)
             throw new Response(false, 'Unknown error', null, 'SERVER_ERROR')
         }
     }
@@ -95,6 +97,7 @@ class RidesUseCase {
             }
             return new Response(true, 'success', getData[0], null)
         } catch (error) {
+            Log.error(error)
             throw new Response(false, 'Unknown error', null, 'SERVER_ERROR')
         }
     }
@@ -121,6 +124,7 @@ class RidesUseCase {
             }
             return new Response(true, 'success', result, null)
         } catch (error) {
+            Log.error(error)
             return new Response(false, 'Unknown error', null, 'SERVER_ERROR')
         }
     }

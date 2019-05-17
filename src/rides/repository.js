@@ -1,6 +1,7 @@
 'use strict'
 
 const BaseRepository = require('../utils/baseRepository')
+const Log = require('../utils/log')
 
 const Response = require('../utils/response')
 
@@ -14,6 +15,7 @@ class RidesRepository extends BaseRepository {
             )
             return result
         } catch (error) {
+            Log.error(error)
             throw new Response(false, 'Unknown error', null, 'SERVER_ERROR')
         }
     }
@@ -40,6 +42,7 @@ class RidesRepository extends BaseRepository {
             )
             return result
         } catch (error) {
+            Log.error(error)
             return new Response(false, 'Unknown error', null, 'SERVER_ERROR')
         }
     }
